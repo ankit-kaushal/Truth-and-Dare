@@ -14,8 +14,6 @@ const GameScreen = ({players=[]}) => {
         setTimeout(() => {
             if (previousPlayer !== null) {
                 currPlayers = players.filter( item => item.name !== previousPlayer)
-                console.log('prev', previousPlayer);
-                console.log('curr1', currPlayers)
             }
             const randomIndex = Math.floor(Math.random() * currPlayers.length);
             setSelectedPlayer(currPlayers[randomIndex].name);
