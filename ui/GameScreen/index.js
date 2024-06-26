@@ -3,15 +3,23 @@ import { useState } from 'react';
 
 const GameScreen = ({players=[]}) => {
     const [selectedPlayer, setSelectedPlayer] = useState('');
+    const [previousPlayer, setPreviousPlayer] = useState('');
     const [spinning, setSpinning] = useState(false);
     const [rotation, setRotation] = useState(0);
 
     const spinBottle = () => {
         setSpinning(true);
         setRotation(rotation + 1620);
+        let currPlayers = players
         setTimeout(() => {
-            const randomIndex = Math.floor(Math.random() * players.length);
-            setSelectedPlayer(players[randomIndex].name);
+            if (previousPlayer !== null) {
+                currPlayers = players.filter( item => item.name !== previousPlayer)
+                console.log('prev', previousPlayer);
+                console.log('curr1', currPlayers)
+            }
+            const randomIndex = Math.floor(Math.random() * currPlayers.length);
+            setSelectedPlayer(currPlayers[randomIndex].name);
+            setPreviousPlayer(currPlayers[randomIndex].name);
             setSpinning(false)
         }, 2000);
     };
