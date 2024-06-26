@@ -1,5 +1,6 @@
 import styles from './styles.module.css'
 import { useState } from 'react';
+import TruthOrDare from '../TruthOrDare';
 
 const GameScreen = ({players=[]}) => {
     const [selectedPlayer, setSelectedPlayer] = useState('');
@@ -22,7 +23,8 @@ const GameScreen = ({players=[]}) => {
         }, 2000);
     };
 
-    console.log("rotation",rotation);
+    // setSelectedPlayer((prev)=> players[randomIndex].name!==prev ? players[randomIndex].name!==prev : players[randomIndex+1].name);
+
     return (
         <div>
             <div className={styles.title}>Spin the Bottle</div>
@@ -41,6 +43,10 @@ const GameScreen = ({players=[]}) => {
                         {spinning ? <div className={styles.loader} /> : selectedPlayer}
                     </span>
                 </div> 
+            : null}
+
+            {rotation !==0 && !spinning ? 
+                <TruthOrDare /> 
             : null}
         </div>
     )
