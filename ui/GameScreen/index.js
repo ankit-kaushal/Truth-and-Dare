@@ -1,5 +1,6 @@
 import styles from './styles.module.css'
 import { useState } from 'react';
+import TruthOrDare from '../TruthOrDare';
 
 const GameScreen = ({players=[]}) => {
     const [selectedPlayer, setSelectedPlayer] = useState('');
@@ -39,13 +40,7 @@ const GameScreen = ({players=[]}) => {
             : null}
 
             {rotation !==0 && !spinning ? 
-                <div className={styles.choose_button}>
-                    <span>Choose</span>
-                    <div>
-                        <button className={`${styles.button} ${styles.play}`}><span>TRUTH</span></button>
-                        <button className={`${styles.button} ${styles.play}`}><span>DARE</span></button>
-                    </div>
-                </div> 
+                <TruthOrDare /> 
             : null}
         </div>
     )
