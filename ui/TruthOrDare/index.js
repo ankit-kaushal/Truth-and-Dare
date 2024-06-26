@@ -3,20 +3,26 @@ import axios from 'axios';
 
 import styles from './styles.module.css'
 
-const TruthOrDare = () => {
+const TruthOrDare = ({ lastResults=[], setLastResults=()=>{} }) => {
     const [result, setResult] = useState('');
 
     const chooseTruthOrDare = async (choice) => {
-        if (choice === 'truth') {
-          const response = await axios.get('/api/truths');
-          const randomIndex = Math.floor(Math.random() * response.data.data.length);
-          setResult(response.data.data[randomIndex].text);
-        } else {
-          const response = await axios.get('/api/dares');
-          const randomIndex = Math.floor(Math.random() * response.data.data.length);
-          setResult(response.data.data[randomIndex].text);
-        }
+        const response = await axios.get(`/api/${choice === 'truth' ? 'truths' : 'dares'}`);
+        const data = response.data.data;
+        const filteredData = data.filter(item => !lastResults.includes(item.text));
+        const randomIndex = Math.floor(Math.random() * filteredData.length);
+        const newResult = filteredData[randomIndex].text;
+        setResult(newResult);
+        setLastResults(prevResults => {
+            const updatedResults = [...prevResults, newResult];
+            if (updatedResults.length > 8) {
+                updatedResults.shift();
+            }
+            return updatedResults;
+        });
     };
+
+    console.log("lastResults",lastResults);
 
     return (
         <div className={styles.choose_button}>

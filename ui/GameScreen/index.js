@@ -6,6 +6,7 @@ const GameScreen = ({players=[]}) => {
     const [selectedPlayer, setSelectedPlayer] = useState('');
     const [spinning, setSpinning] = useState(false);
     const [rotation, setRotation] = useState(0);
+    const [lastResults, setLastResults] = useState([]);
 
     const spinBottle = () => {
         setSpinning(true);
@@ -16,8 +17,6 @@ const GameScreen = ({players=[]}) => {
             setSpinning(false)
         }, 2000);
     };
-
-    // setSelectedPlayer((prev)=> players[randomIndex].name!==prev ? players[randomIndex].name!==prev : players[randomIndex+1].name);
 
     return (
         <div>
@@ -40,7 +39,7 @@ const GameScreen = ({players=[]}) => {
             : null}
 
             {rotation !==0 && !spinning ? 
-                <TruthOrDare /> 
+                <TruthOrDare lastResults={lastResults} setLastResults={setLastResults} /> 
             : null}
         </div>
     )
