@@ -15,8 +15,13 @@ const TruthOrDare = ({ lastResults=[], setLastResults=()=>{} }) => {
         const data = response.data.data;
         const filteredData = data.filter(item => !lastResults.includes(item.text));
         const randomIndex = Math.floor(Math.random() * filteredData.length);
-        const newResult = filteredData[randomIndex].text;
-        setResult(newResult);
+        const newResult = filteredData[randomIndex];
+        console.log(randomIndex, 'wkjbdckjbdfkc');
+        if (newResult !== undefined) {
+            setResult(newResult.text);
+        } else {
+            setResult("No Results Found Bhag Jao yaha se Bhosdiwalo")
+        }
         setLastResults(prevResults => {
             const updatedResults = [...prevResults, newResult];
             if (updatedResults.length > 8) {
