@@ -1,5 +1,5 @@
 .choose_button {
-    margin: 25px auto;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,6 +109,33 @@
     width: 100%;
 }
 
+.result {
+    color: #dbd56e;
+    background: -webkit-linear-gradient(25deg, #eee, #9c9b9b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 600;
+    overflow: hidden;
+    border-right: 2px solid;
+    animation: type 1.5s steps(90) 1.5s 1 normal both, cursor 1s step-end infinite;
+    position: relative;
+}
+
+@keyframes type {
+    from {
+        width: 0;
+   }
+    to {
+        width: fit-content;
+   }
+}
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+   }
+}
 .gen_ai {
     display: flex;
     justify-content: center;

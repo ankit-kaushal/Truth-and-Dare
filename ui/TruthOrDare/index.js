@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import styles from './styles.module.css'
 
-const TruthOrDare = () => {
+const TruthOrDare = ({ lastResults=[], setLastResults=()=>{} }) => {
     const [result, setResult] = useState('');
     const [aiResult, setAiResult] = useState('');
     const [choice, setChoice] = useState('')
@@ -11,15 +11,19 @@ const TruthOrDare = () => {
 
     const chooseTruthOrDare = async (choice) => {
         setChoice(choice)
-        if (choice === 'truth') {
-          const response = await axios.get('/api/truths');
-          const randomIndex = Math.floor(Math.random() * response.data.data.length);
-          setResult(response.data.data[randomIndex].text);
-        } else {
-          const response = await axios.get('/api/dares');
-          const randomIndex = Math.floor(Math.random() * response.data.data.length);
-          setResult(response.data.data[randomIndex].text);
-        }
+        const response = await axios.get(`/api/${choice === 'truth' ? 'truths' : 'dares'}`);
+        const data = response.data.data;
+        const filteredData = data.filter(item => !lastResults.includes(item.text));
+        const randomIndex = Math.floor(Math.random() * filteredData.length);
+        const newResult = filteredData[randomIndex].text;
+        setResult(newResult);
+        setLastResults(prevResults => {
+            const updatedResults = [...prevResults, newResult];
+            if (updatedResults.length > 8) {
+                updatedResults.shift();
+            }
+            return updatedResults;
+        });
     };
 
     const getAiResponse = async () => {
@@ -41,7 +45,7 @@ const TruthOrDare = () => {
 
     return (
         <div className={styles.choose_button}>
-            <span>Choose</span>
+            <span>Choose your move...</span>
             <div>
                 <button className={`${styles.button} ${styles.play}`} onClick={() => chooseTruthOrDare('truth')}>
                     <span>TRUTH</span>
