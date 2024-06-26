@@ -10,7 +10,7 @@
 .bottle_container {
     display: flex;
     justify-content: center;
-    margin: 40px 0;
+    margin: 25px 0;
 }
 
 .bottle_container img {

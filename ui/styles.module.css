@@ -1,7 +1,7 @@
 .container {
-    padding: 2rem;
+    padding: 1.5rem;
     height: 100vh;
-    overflow: hidden;
+    overflow: scroll;
     background: #232526; 
     background: -webkit-linear-gradient(to bottom, #163948, #232526);
     background: linear-gradient(to bottom, #163948, #232526);

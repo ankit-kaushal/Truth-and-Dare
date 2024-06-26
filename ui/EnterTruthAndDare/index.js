@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import Toast from '../Toast';
 import axios from 'axios';
 
-const EnterTruthAndDare = () => {
+const EnterTruthAndDare = ({showTruth = true, showDare = true, style = {}, inner_style = {}}) => {
     const [truth, setTruth] = useState('');
     const [dare, setDare] = useState('');
     const toastRef = useRef(null);
@@ -29,9 +29,9 @@ const EnterTruthAndDare = () => {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.inner_container}>
-                <div style={{marginTop:40}}>
+        <div className={styles.container} style={{...style}}>
+            <div className={styles.inner_container} style={{...inner_style}}>
+                {showTruth && <div style={{marginTop:40}}>
                     <label className={styles.label}>Enter Truth</label>
                     <input 
                         type='text'
@@ -41,8 +41,8 @@ const EnterTruthAndDare = () => {
                         placeholder='Enter Truth' 
                     />
                     <button className={`${styles.button} ${styles.submit}`} onClick={addTruths}>Submit</button>
-                </div>
-                <div style={{marginTop:80}}>
+                </div>}
+                {showDare && <div style={{marginTop:80}}>
                     <label className={styles.label}>Enter Dare</label>
                     <input 
                         type='text'
@@ -52,7 +52,7 @@ const EnterTruthAndDare = () => {
                         placeholder='Enter Dare' 
                     />
                     <button className={`${styles.button} ${styles.submit}`} onClick={addDare}>Submit</button>
-                </div>
+                </div>}
             </div>
             <Toast ref={toastRef} />
         </div>

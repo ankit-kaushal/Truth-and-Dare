@@ -35,3 +35,24 @@ export async function POST(request) {
     });
   }
 }
+
+export async function DELETE(request, res) {
+  const { method } = request
+  console.log(method, 'method');
+  try {
+    await connectToDatabase();
+    const body = await request.json();
+    const { id } = body;
+    const truth = await Dare.findByIdAndDelete(id);
+    return new Response(JSON.stringify({ success: true }), {
+      status: 201,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error('Error deleting dares:', error);
+    return new Response(JSON.stringify({ success: false, error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
