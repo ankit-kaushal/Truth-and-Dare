@@ -36,6 +36,16 @@ const GameScreen = ({players=[]}) => {
                     </span>
                 </div> 
             : null}
+
+            {rotation !==0 && !spinning ? 
+                <div className={styles.choose_button}>
+                    <span>Choose</span>
+                    <div>
+                        <button className={`${styles.button} ${styles.play}`}><span>TRUTH</span></button>
+                        <button className={`${styles.button} ${styles.play}`}><span>DARE</span></button>
+                    </div>
+                </div> 
+            : null}
         </div>
     )
 }
