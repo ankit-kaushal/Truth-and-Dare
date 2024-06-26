@@ -16,7 +16,8 @@ const GameScreen = ({players=[]}) => {
         }, 2000);
     };
 
-    console.log("rotation",rotation);
+    // setSelectedPlayer((prev)=> players[randomIndex].name!==prev ? players[randomIndex].name!==prev : players[randomIndex+1].name);
+
     return (
         <div>
             <div className={styles.title}>Spin the Bottle</div>
