@@ -22,16 +22,14 @@ const TruthOrDare = ({ lastResults=[], setLastResults=()=>{} }) => {
         });
     };
 
-    console.log("lastResults",lastResults);
-
     return (
         <div className={styles.choose_button}>
-            <span>Choose</span>
+            <span>Choose your move...</span>
             <div>
                 <button className={`${styles.button} ${styles.play}`} onClick={() => chooseTruthOrDare('truth')}><span>TRUTH</span></button>
                 <button className={`${styles.button} ${styles.play}`} onClick={() => chooseTruthOrDare('dare')}><span>DARE</span></button>
             </div>
-            {result && <p>{result}</p>}
+            {result && <div className={styles.result}>{result}</div>}
         </div> 
     )
 }
