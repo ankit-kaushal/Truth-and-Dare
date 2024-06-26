@@ -9,11 +9,18 @@ import axios from 'axios';
 const TruthAndDare = () => {
     const [game, setGame] = useState(false);
     const [players, setPlayers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPlayers = async () => {
-          const response = await axios.get('/api/players');
-          setPlayers(response.data.data);
+            try {
+                const response = await axios.get('/api/players');
+                setPlayers(response.data.data);
+            } catch (error) {
+                console.error('Error fetching players:', error);
+            } finally {
+                setLoading(false);
+            }
         };
         fetchPlayers();
     }, []);
@@ -36,6 +43,7 @@ const TruthAndDare = () => {
             :      <MainScreen
                         setGame={setGame}
                         players={players}
+                        loading={loading}
                     /> 
             }
         </div>
