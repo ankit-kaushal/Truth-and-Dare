@@ -8,10 +8,16 @@ export const metadata = {
   description: 'A game for Saheliyan 💃🕺',
 }
 
+import { AuthProvider } from '@/context/AuthContext';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
-  )
+  );
 }
