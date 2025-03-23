@@ -1,32 +1,54 @@
 'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
+import api from '@/services/api';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
   const [error, setError] = useState('');
-  const router = useRouter();
+  const { login, user, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading && user) {
+      window.location.href = '/game';
+    }
+  }, [user, loading]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      
-      if (!res.ok) throw new Error(data.message);
-      
-      localStorage.setItem('user', JSON.stringify(data.user));
-      router.push('/'); // Redirect to home page
+      const { user } = await api.auth.login(formData);
+      await login(user);
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || 'Login failed');
     }
   };
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">
+      <h1 className="text-xl">Loading...</h1>
+    </div>;
+  }
+
+  if (user) {
+    return <div className="min-h-screen flex items-center justify-center">
+      <h1 className="text-xl">Redirecting to game...</h1>
+    </div>;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -37,8 +59,9 @@ export default function Login() {
           <div>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Email"
               required
               className="w-full px-3 py-2 border rounded-md"
@@ -47,8 +70,9 @@ export default function Login() {
           <div>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Password"
               required
               className="w-full px-3 py-2 border rounded-md"

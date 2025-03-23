@@ -1,30 +1,31 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const user = request.cookies.get('user');
-  const isAuthPage = request.nextUrl.pathname.startsWith('/login') || 
-                     request.nextUrl.pathname.startsWith('/signup');
+  // Check if the path is public
+  const publicPaths = ['/login', '/signup'];
+  const isPublicPath = publicPaths.includes(request.nextUrl.pathname);
 
-  if (!user && !isAuthPage) {
-    return NextResponse.redirect(new URL('/login', request.url));
-  }
+  // Get auth token from headers
+  const authHeader = request.headers.get('Authorization');
+  
+  // Get user from localStorage on client side
+  if (typeof window !== 'undefined') {
+    const user = localStorage.getItem('user');
+    
+    // Redirect to login if no user and trying to access protected route
+    if (!user && !isPublicPath) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
 
-  if (user && isAuthPage) {
-    return NextResponse.redirect(new URL('/', request.url));
+    // Redirect to game if user exists and trying to access public routes
+    if (user && isPublicPath) {
+      return NextResponse.redirect(new URL('/game', request.url));
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
