@@ -1,0 +1,130 @@
+.admin_layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: #234452;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: fit-content;
+    padding: 1.5rem 0.5rem;
+
+    .nav_items {
+        width: fit-content;
+        padding: 0 0.8rem 0.8rem 0.8rem;
+    }
+
+    .sidebar_header {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    .logout_button {
+        justify-content: center;
+    }
+}
+
+.sidebar_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.collapse_btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.nav_items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.nav_item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    width: 100%;
+    text-align: left;
+}
+
+.nav_item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav_item.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.icon {
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.logout_button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: auto;
+    transition: background-color 0.2s;
+}
+
+.logout_button:hover {
+    background: rgb(220, 38, 38);
+}
+
+.main_content {
+    flex-grow: 1;
+    padding: 2rem;
+    background: #f8fafc;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+    }
+
+    .nav_items {
+        width: fit-content;
+    }
+
+    .sidebar {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .sidebar_header h2,
+    .nav_item span:not(.icon),
+    .logout_button span:not(.icon) {
+        display: none;
+    }
+}

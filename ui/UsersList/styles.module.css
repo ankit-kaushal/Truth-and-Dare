@@ -1,0 +1,170 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2rem;
+    color: #234452;
+    margin-bottom: 2rem;
+}
+
+.users_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.user_card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.user_info {
+    margin-bottom: 1rem;
+}
+
+.user_info h3 {
+    color: #234452;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.user_info p {
+    color: #64748b;
+    margin: 0;
+}
+
+.reset_button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #234452;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.reset_button:hover {
+    background: #1a3340;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    font-size: 1.1rem;
+    color: #234452;
+}
+
+.error {
+    padding: 1rem;
+    background: #fef2f2;
+    color: #dc2626;
+    border-radius: 8px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal h3 {
+    margin: 0 0 1rem 0;
+    color: #234452;
+}
+
+.modal p {
+    margin-bottom: 1.5rem;
+    color: #64748b;
+}
+
+.modal_buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cancel_button {
+    padding: 0.75rem 1.5rem;
+    background: #e2e8f0;
+    color: #64748b;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.confirm_button {
+    padding: 0.75rem 1.5rem;
+    background: #234452;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cancel_button:hover {
+    background: #cbd5e1;
+}
+
+.confirm_button:hover {
+    background: #1a3340;
+}
+
+.search_container {
+    margin-bottom: 2rem;
+}
+
+.search_input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background: transparent;
+    color: #333;
+}
+
+.search_input:focus {
+    outline: none;
+    border-color: #234452;
+    box-shadow: 0 0 0 3px rgba(35, 68, 82, 0.1);
+}
+
+
+.no_results {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    background: #f8fafc;
+    border-radius: 8px;
+    grid-column: 1 / -1;
+}
