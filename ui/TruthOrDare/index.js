@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import styles from './styles.module.css';
 
-const TruthOrDare = ({ lastResults = [], setLastResults = () => {} }) => {
+const TruthOrDare = ({ lastResults = [], setLastResults = () => {}, level='' }) => {
     const [state, setState] = useState({
         result: '',
         aiResult: '',
@@ -15,7 +15,7 @@ const TruthOrDare = ({ lastResults = [], setLastResults = () => {} }) => {
         try {
             setState(prev => ({ ...prev, loading: true, choice, error: '' }));
             
-            const response = await axios.get(`/api/${choice === 'truth' ? 'truths' : 'dares'}`);
+            const response = await axios.get(`/api/${choice === 'truth' ? 'truths' : 'dares'}?level=${level}`);
             const data = response.data.data;
             
             // Ensure lastResults is an array and check for text property
