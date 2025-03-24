@@ -45,3 +45,96 @@
     font-size: 18px;
     gap: 10px;
 }
+
+
+.game_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.loader_container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #234452;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.mini_loader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #234452;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error_container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.error_message {
+    background: #fef2f2;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.error_message h3 {
+    color: #dc2626;
+    margin-bottom: 1rem;
+}
+
+.error_message p {
+    color: #234452;
+}
+
+.retry_button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #234452;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.retry_button:hover {
+    background: #1a3340;
+}
+
+.bottle_image {
+    max-width: 200px;
+    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.player_name {
+    font-weight: bold;
+    margin-left: 0.2rem;
+}

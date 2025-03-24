@@ -142,30 +142,139 @@
     text-align: center;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.button_container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.choice_button {
+    padding: 0.75rem 2rem;
+    border: 2px solid white;
+    border-radius: 25px;
+    background: transparent;
+    color: #234452;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+}
+
+.choice_button:hover:not(:disabled) {
+    background: #234452;
+    color: white;
+}
+
+.choice_button.active {
+    background: #234452;
+    color: white;
+    border-color: #234452;
+}
+
+.choice_button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.loader_container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
 .loader {
-    width: 40px;
-    height: 40px;
-    margin: 100px auto;
-    position: relative;
-    --c:no-repeat linear-gradient(#1a3e4b 0 0);
-    background:
-      var(--c) center/100% 10px,
-      var(--c) center/10px 100%;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #234452;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
-.loader:before {
-    content:'';
-    position: absolute;
-    inset: 0;
-    background:
-        var(--c) 0    0,
-        var(--c) 100% 0,
-        var(--c) 0    100%,
-        var(--c) 100% 100%;
-    background-size: 15.5px 15.5px;
-    animation: l16 1.5s infinite cubic-bezier(0.3,1,0,1);
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
-@keyframes l16 {
-    33%  {inset:-10px;transform: rotate(0deg)}
-    66%  {inset:-10px;transform: rotate(90deg)}
-    100% {inset:0    ;transform: rotate(90deg)}
+
+.result_container {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.result_text {
+    font-size: 1.1rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.ai_button {
+    padding: 0.75rem 1.5rem;
+    background: #234452;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ai_button:hover:not(:disabled) {
+    background: white;
+    color: #234452;
+    border: 2px solid #234452;
+}
+
+.ai_result {
+    background: #eef2ff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.ai_result h4 {
+    color: #234452;
+    margin-bottom: 0.5rem;
+}
+
+.error_message {
+    color: #dc2626;
+    background: #fef2f2;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .button_container {
+        flex-direction: column;
+    }
+
+    .choice_button {
+        width: 100%;
+    }
 }
