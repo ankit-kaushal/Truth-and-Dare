@@ -1,13 +1,23 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import styles from './styles.module.css';
 
 const AdminLayout = ({ children, activePage }) => {
     const router = useRouter();
-    const { logout } = useAuth();
+    const { logout, user } = useAuth();
     const [isCollapsed, setIsCollapsed] = useState(false);
+
+    useEffect(() => {
+        if (!user || user.role !== 'admin') {
+            router.push('/game');
+        }
+    }, [user, router]);
+
+    if (!user || user.role !== 'admin') {
+        return null;
+    }
 
     const navigationItems = [
         { id: 'users', label: 'Users', icon: '👥', path: '/admin/users' },

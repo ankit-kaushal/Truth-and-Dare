@@ -11,4 +11,6 @@ const UserSchema = new mongoose.Schema({
   timestamps: true
 });
 
+// TO DO- Show all games corresponding to a user
+
 export default mongoose.models.User || mongoose.model('User', UserSchema);
