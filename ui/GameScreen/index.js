@@ -123,6 +123,8 @@ const GameScreen = () => {
                         setGameState(prev => ({ ...prev, lastResults: results }))
                     } 
                     level={gameState.game?.mode}
+                    dares={gameState.game?.dares}
+                    truths={gameState.game?.truths}
                 />
             )}
         </div>

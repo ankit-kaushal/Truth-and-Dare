@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import styles from './styles.module.css';
 
-const TruthOrDare = ({ lastResults = [], setLastResults = () => {}, level='' }) => {
+const TruthOrDare = ({ lastResults = [], setLastResults = () => {}, level='', dares=[], truths=[] }) => {
     const [state, setState] = useState({
         result: '',
         aiResult: '',
@@ -115,7 +115,19 @@ const TruthOrDare = ({ lastResults = [], setLastResults = () => {}, level='' }) 
 
             {state.result && !state.loading && (
                 <div className={styles.result_container}>
-                    <div className={styles.result_text}>{state.result}</div>
+                    <div className={styles.result_text}>
+                        {(() => {
+                            const useProvidedData = Math.random() < 0.5;
+                            if (useProvidedData && state.choice === 'truth' && truths.length > 0) {
+                                const randomTruth = truths[Math.floor(Math.random() * truths.length)];
+                                return randomTruth;
+                            } else if (useProvidedData && state.choice === 'dare' && dares.length > 0) {
+                                const randomDare = dares[Math.floor(Math.random() * dares.length)];
+                                return randomDare;
+                            }
+                            return state.result;
+                        })()}
+                    </div>
                     <button 
                         className={styles.ai_button}
                         onClick={getAiResponse}
