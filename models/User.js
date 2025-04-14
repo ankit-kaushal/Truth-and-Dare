@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   role: { type: String, enum: ['player', 'admin'], default: 'player' },
-  gameId: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
+  gameIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
   token: { type: String }
 }, {
   timestamps: true

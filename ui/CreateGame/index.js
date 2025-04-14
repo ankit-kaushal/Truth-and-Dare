@@ -1,17 +1,20 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 import axios from 'axios';
 import styles from './styles.module.css';
 
 const CreateGame = () => {
+  const { user } = useAuth();
+  const router = useRouter();
   const [players, setPlayers] = useState(['', '']);
   const [truths, setTruths] = useState(['']);
   const [dares, setDares] = useState(['']);
   const [mode, setMode] = useState('basic');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [games, setGames] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +34,8 @@ const CreateGame = () => {
         players: filteredPlayers,
         truths: filteredTruths,
         dares: filteredDares,
-        mode
+        mode,
+        userId: user?._id // Add user ID from auth context
       });
 
       router.push(`/game/${data.game._id}`);
@@ -92,9 +96,24 @@ const CreateGame = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        if (user?._id) {
+          const response = await axios.get(`/api/games?userId=${user._id}`);
+          setGames(response.data.games);
+        }
+      } catch (error) {
+        console.error('Error fetching games:', error);
+      }
+    };
+  
+    fetchGames();
+  }, [user]);
+
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} style={{width:'70%'}}>
         <div className={styles.header_panel}>
           <h2 className={styles.title}>Create New Game</h2>
           <select
@@ -221,6 +240,33 @@ const CreateGame = () => {
             {loading ? 'Creating Game...' : 'Create Game'}
           </button>
         </form>
+      </div>
+      <div className={styles.wrapper} style={{width:'30%'}}>
+        <div className={styles.header_panel}>
+          <h2 className={styles.title}>All Games</h2>
+        </div>
+        <div className={styles.games_list}>
+          {games.map((game, index) => (
+            <div 
+              key={game._id} 
+              className={`${styles.game_card} ${styles.clickable}`}
+              onClick={() => router.push(`/game/${game._id}`)}
+            >
+              <h3 className={styles.game_title}>Game {index + 1}</h3>
+              <div className={styles.game_details}>
+                <p className={styles.game_mode}>Mode: {game.mode}</p>
+                <div className={styles.players_list}>
+                  <p className={styles.players_title}>
+                    Players: {game.players.join(', ')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+          {games.length === 0 && (
+            <p className={styles.no_games}>No games found</p>
+          )}
+        </div>
       </div>
     </div>
   );

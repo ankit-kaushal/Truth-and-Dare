@@ -12,7 +12,7 @@ export async function GET(request) {
                 { name: { $regex: searchQuery, $options: 'i' } },
                 { email: { $regex: searchQuery, $options: 'i' } }
             ]
-        }).select('name email');
+        }).select('name email role gameIds');
         
         return NextResponse.json({ users });
     } catch (error) {
