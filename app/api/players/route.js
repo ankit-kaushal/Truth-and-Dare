@@ -27,7 +27,6 @@ export async function POST(request) {
   await connectToDatabase();
 
   try {
-    console.log(request.body);
     const body = await request.json();
     const { name } = body;
 

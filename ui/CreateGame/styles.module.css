@@ -5,6 +5,7 @@
   display: flex;
   gap: 20px;
   justify-content: space-between;
+  position: relative;
 }
 
 .wrapper {
@@ -248,4 +249,88 @@
 .clickable:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+.mobile_game_room_button {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 100;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .main_wrapper,
+  .game_room_wrapper {
+    width: 100% !important;
+  }
+
+  .game_room_wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 99;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .mobile_game_room_button {
+    display: block;
+  }
+
+  .input_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section_header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add_button {
+    width: 100%;
+  }
+
+  .input_wrapper {
+    margin-bottom: 10px;
+  }
+
+  .game_card {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .section_title {
+    font-size: 18px;
+  }
+
+  .input_field {
+    font-size: 14px;
+  }
+
+  .game_title {
+    font-size: 16px;
+  }
 }

@@ -55,7 +55,6 @@ export async function GET(request) {
     }
 
     const user = await User.findById(userId).lean();
-    console.log('Found user:', user);
 
     if (!user) {
       return NextResponse.json(
@@ -68,8 +67,6 @@ export async function GET(request) {
     const games = await Game.find({
       _id: { $in: user.gameIds || [] }
     }).sort({ createdAt: -1 });
-
-    console.log('Found games:', games);
     
     return NextResponse.json({ games });
   } catch (error) {

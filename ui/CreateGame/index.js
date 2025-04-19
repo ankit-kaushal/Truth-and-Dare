@@ -15,6 +15,7 @@ const CreateGame = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [games, setGames] = useState([]);
+  const [showGameRoom, setShowGameRoom] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +36,7 @@ const CreateGame = () => {
         truths: filteredTruths,
         dares: filteredDares,
         mode,
-        userId: user?._id // Add user ID from auth context
+        userId: user?._id
       });
 
       router.push(`/game/${data.game._id}`);
@@ -83,7 +84,7 @@ const CreateGame = () => {
   const deleteField = (index, type) => {
     switch(type) {
       case 'player':
-        if (players.length > 2) { // Prevent deletion if only 2 players remain
+        if (players.length > 2) {
           setPlayers(players.filter((_, i) => i !== index));
         }
         break;
@@ -110,10 +111,10 @@ const CreateGame = () => {
   
     fetchGames();
   }, [user]);
-
+  
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper} style={{width:'70%'}}>
+      <div className={`${styles.wrapper} ${styles.main_wrapper}`} style={{width:'70%'}}>
         <div className={styles.header_panel}>
           <h2 className={styles.title}>Create New Game</h2>
           <select
@@ -241,7 +242,19 @@ const CreateGame = () => {
           </button>
         </form>
       </div>
-      <div className={styles.wrapper} style={{width:'30%'}}>
+      {/* Mobile Game Room Button */}
+      <button 
+        className={styles.mobile_game_room_button}
+        onClick={() => setShowGameRoom(!showGameRoom)}
+      >
+        {showGameRoom ? 'Hide Game Room' : 'Show Game Room'}
+      </button>
+      <div className={`${styles.wrapper} ${styles.game_room_wrapper}`} 
+        style={{
+          width:'30%',
+          display: showGameRoom ? 'block' : null
+        }}
+      >
         <div className={styles.header_panel}>
           <h2 className={styles.title}>All Games</h2>
         </div>
