@@ -17,7 +17,7 @@ export const metadata = {
     url: 'https://game.ankitkaushal.in.net/',
     images: [
       {
-        url: '/image.png',
+        url: 'https://game.ankitkaushal.in.net/image.png',
         width: 1200,
         height: 630,
         alt: 'Truth and Dare Game',
@@ -28,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Truth and Dare - Fun Party Game',
     description: 'Create and play custom Truth and Dare games with friends',
-    images: ['/image.png'],
+    images: ['https://game.ankitkaushal.in.net/image.png'],
   },
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   robots: 'index, follow',
