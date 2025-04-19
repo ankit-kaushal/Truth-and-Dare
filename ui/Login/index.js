@@ -56,7 +56,7 @@ const Login = () => {
         </a>
       </Modal>
 
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${styles.responsive_wrapper}`}>
         <div className={styles.form_panel}>
           <h2 className={styles.title}>Sign in to Your Account</h2>
           <form onSubmit={handleSubmit} className={styles.form}>

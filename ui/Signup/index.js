@@ -49,7 +49,7 @@ const Signup = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${styles.responsive_wrapper}`}>
         <div className={styles.welcome_panel}>
           <h2 className={styles.welcome_title}>Welcome Back!</h2>
           <p className={styles.welcome_text}>
