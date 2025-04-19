@@ -101,9 +101,36 @@
   }
 }
 
-.forgot_password {
-  color: #234452;
+.whatsapp_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
   text-decoration: none;
+  margin: 20px 0;
+  font-weight: 500;
+}
+
+.whatsapp_link:hover {
+  background: #128C7E;
+}
+
+.whatsapp_icon {
+  width: 24px;
+  height: 24px;
+}
+
+.forgot_password {
+  background: none;
+  border: none;
+  color: #234452;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .forgot_password:hover {
