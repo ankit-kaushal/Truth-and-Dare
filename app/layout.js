@@ -5,6 +5,7 @@ import styles from './layout.module.css'
 const inter = Inter({ subsets: ['latin'] })
 
 import { AuthProvider } from '@/context/AuthContext';
+import Providers from '@/components/Providers';
 
 export const metadata = {
   title: 'Truth and Dare - Fun Party Game',
@@ -60,9 +61,9 @@ export default function RootLayout({ children }) {
             <div></div>
             <div></div>
           </div>
-          <AuthProvider>
+          <Providers>
             {children}
-          </AuthProvider>
+          </Providers>
         </div>
       </body>
     </html>

@@ -1,9 +1,11 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useSession, signOut } from 'next-auth/react';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+  const { data: session, status } = useSession();
   const [authState, setAuthState] = useState({
     user: null,
     loading: true,
@@ -12,15 +14,25 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     try {
-      const storedUser = localStorage.getItem('user');
-      if (storedUser) {
+      // Check for NextAuth session first
+      if (session?.user) {
         setAuthState(prev => ({
           ...prev,
-          user: JSON.parse(storedUser),
+          user: session.user,
           loading: false
         }));
       } else {
-        setAuthState(prev => ({ ...prev, loading: false }));
+        // Fall back to localStorage for regular auth
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          setAuthState(prev => ({
+            ...prev,
+            user: JSON.parse(storedUser),
+            loading: false
+          }));
+        } else {
+          setAuthState(prev => ({ ...prev, loading: false }));
+        }
       }
     } catch (error) {
       setAuthState(prev => ({
@@ -29,7 +41,7 @@ export function AuthProvider({ children }) {
         loading: false
       }));
     }
-  }, []);
+  }, [session]);
 
   const login = async (userData) => {
     setAuthState(prev => ({ ...prev, loading: true, error: null }));
@@ -50,14 +62,18 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
     localStorage.removeItem('user');
     setAuthState({
       user: null,
       loading: false,
       error: null
     });
-    window.location.href = '/login';
+    if (session) {
+      await signOut({ callbackUrl: '/login' });
+    } else {
+      window.location.href = '/login';
+    }
   };
 
   return (
