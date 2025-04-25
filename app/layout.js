@@ -14,10 +14,10 @@ export const metadata = {
     title: 'Truth and Dare - Fun Party Game',
     description: 'Create and play custom Truth and Dare games with friends',
     type: 'website',
-    url: 'https://game.ankitkaushal.in.net/',
+    url: 'https://spin.ankitkaushal.in/',
     images: [
       {
-        url: 'https://game.ankitkaushal.in.net/image.png',
+        url: 'https://spin.ankitkaushal.in/image.png',
         width: 1200,
         height: 630,
         alt: 'Truth and Dare Game',
@@ -28,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Truth and Dare - Fun Party Game',
     description: 'Create and play custom Truth and Dare games with friends',
-    images: ['https://game.ankitkaushal.in.net/image.png'],
+    images: ['https://spin.ankitkaushal.in/image.png'],
   },
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   robots: 'index, follow',
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://game.ankitkaushal.in.net/" />
+        <link rel="canonical" href="https://spin.ankitkaushal.in/" />
         <meta name="application-name" content="Truth and Dare" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
