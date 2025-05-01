@@ -69,6 +69,8 @@ const Signup = () => {
               value={formData.firstName}
               onChange={handleChange}
               className={styles.input}
+              disabled={loading}
+              required
             />
             <input
               type="text"
@@ -77,6 +79,8 @@ const Signup = () => {
               value={formData.lastName}
               onChange={handleChange}
               className={styles.input}
+              disabled={loading}
+              required
             />
             <input
               type="email"
@@ -85,6 +89,8 @@ const Signup = () => {
               value={formData.email}
               onChange={handleChange}
               className={styles.input}
+              disabled={loading}
+              required
             />
             <input
               type="password"
@@ -93,10 +99,23 @@ const Signup = () => {
               value={formData.password}
               onChange={handleChange}
               className={styles.input}
+              disabled={loading}
+              required
             />
             <div className={styles.submit_button_wrapper}>
-              <button type="submit" className={styles.submit_button} loading={loading}>
-                Sign Up
+              <button 
+                type="submit" 
+                className={styles.submit_button} 
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className={styles.loader}>
+                    <div className={styles.spinner}></div>
+                    <span>Creating Account...</span>
+                  </div>
+                ) : (
+                  'Sign Up'
+                )}
               </button>
             </div>
             {error && <p className={styles.error}>{error}</p>}

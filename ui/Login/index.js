@@ -66,6 +66,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={styles.input}
+              disabled={loading}
               required
             />
             <input
@@ -74,23 +75,36 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className={styles.input}
+              disabled={loading}
               required
             />
             <div className={styles.form_options}>
               <label className={styles.remember_me}>
-                <input type="checkbox" className={styles.input} /> Remember me
+                <input type="checkbox" className={styles.input} disabled={loading} /> Remember me
               </label>
               <button 
                 type="button"
                 onClick={() => setShowModal(true)}
                 className={styles.forgot_password}
+                disabled={loading}
               >
                 Forgot Password?
               </button>
             </div>
             <div className={styles.submit_button_wrapper}>
-              <button type="submit" className={styles.submit_button} loading={loading}>
-                Sign In
+              <button 
+                type="submit" 
+                className={styles.submit_button} 
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className={styles.loader}>
+                    <div className={styles.spinner}></div>
+                    <span>Signing in...</span>
+                  </div>
+                ) : (
+                  'Sign In'
+                )}
               </button>
             </div>
             {error && <p className={styles.error}>{error}</p>}
