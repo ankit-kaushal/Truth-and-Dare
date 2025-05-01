@@ -15,6 +15,7 @@ const GameScreen = () => {
         rotation: 0,
         lastResults: []
     });
+    const [activeDrawer, setActiveDrawer] = useState(null);
 
     const params = useParams();
 
@@ -92,8 +93,52 @@ const GameScreen = () => {
     }
 
     return (
-        <div className={styles.game_container}>
-            <div className={styles.title}>Spin the Bottle</div>
+        <div className={styles.game_screen}>
+            <button 
+                className={`${styles.sidebar_toggle} ${styles.left_toggle}`}
+                onClick={() => {
+                    if (activeDrawer === 'players') {
+                        setActiveDrawer(null);
+                    } else {
+                        setActiveDrawer('players');
+                    }
+                }}
+            >
+                {activeDrawer === 'players' ? '✕' : 'Players'}
+            </button>
+            <button 
+                className={`${styles.sidebar_toggle} ${styles.right_toggle}`}
+                onClick={() => {
+                    if (activeDrawer === 'rules') {
+                        setActiveDrawer(null);
+                    } else {
+                        setActiveDrawer('rules');
+                    }
+                }}
+            >
+                {activeDrawer === 'rules' ? '✕' : 'Rules'}
+            </button>
+
+            {/* Left Sidebar - Players List */}
+            <div className={`${styles.sidebar} ${styles.left_sidebar} ${activeDrawer === 'players' ? styles.show : ''}`}>
+                <div className={styles.sidebar_content}>
+                    <h3>Players</h3>
+                    <ul className={styles.players_list}>
+                        {gameState.game?.players.map((player, index) => (
+                            <li 
+                                key={index}
+                                className={`${styles.player_item} ${player === gameState.selectedPlayer ? styles.active : ''}`}
+                            >
+                                {player}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+
+            {/* Main Game Content */}
+            <div className={styles.game_container}>
+                <div className={styles.title}>Spin the Bottle</div>
             <div className={styles.bottle_container}>
                 <img 
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/356608/bottle.png" 
@@ -127,6 +172,23 @@ const GameScreen = () => {
                     truths={gameState.game?.truths}
                 />
             )}
+        </div>
+
+            {/* Right Sidebar - Instructions */}
+            <div className={`${styles.sidebar} ${styles.right_sidebar} ${activeDrawer === 'rules' ? styles.show : ''}`}>
+                <div className={styles.sidebar_content}>
+                    <h3>How to Play</h3>
+                    <div className={styles.instructions}>
+                        <ol>
+                            <li>Click the bottle to spin</li>
+                            <li>Wait for it to stop on a player</li>
+                            <li>Player must choose Truth or Dare</li>
+                            <li>Complete the challenge or answer truthfully</li>
+                            <li>Next player's turn!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
