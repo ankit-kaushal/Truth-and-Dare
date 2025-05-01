@@ -1,39 +1,41 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-import styles from './layout.module.css'
+import "./globals.css";
+import { Inter } from "next/font/google";
+import styles from "./layout.module.css";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
-import { AuthProvider } from '@/context/AuthContext';
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata = {
-  title: 'Truth and Dare - Fun Party Game',
-  description: 'Play the ultimate Truth and Dare game with friends! Create custom games, add your own truth questions and dare challenges. Perfect for parties and gatherings.',
-  keywords: 'truth or dare, party games, social games, fun games, custom game modes',
+  title: "Truth and Dare - Fun Party Game",
+  description:
+    "Play the ultimate Truth and Dare game with friends! Create custom games, add your own truth questions and dare challenges. Perfect for parties and gatherings.",
+  keywords:
+    "truth or dare, party games, social games, fun games, custom game modes",
   openGraph: {
-    title: 'Truth and Dare - Fun Party Game',
-    description: 'Create and play custom Truth and Dare games with friends',
-    type: 'website',
-    url: 'https://spin.ankitkaushal.in/',
+    title: "Truth and Dare - Fun Party Game",
+    description: "Create and play custom Truth and Dare games with friends",
+    type: "website",
+    url: "https://spin.ankitkaushal.in/",
     images: [
       {
-        url: 'https://spin.ankitkaushal.in/image.png',
+        url: "https://spin.ankitkaushal.in/image.png",
         width: 1200,
         height: 630,
-        alt: 'Truth and Dare Game',
+        alt: "Truth and Dare Game",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Truth and Dare - Fun Party Game',
-    description: 'Create and play custom Truth and Dare games with friends',
-    images: ['https://spin.ankitkaushal.in/image.png'],
+    card: "summary_large_image",
+    title: "Truth and Dare - Fun Party Game",
+    description: "Create and play custom Truth and Dare games with friends",
+    images: ["https://spin.ankitkaushal.in/image.png"],
   },
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
-  robots: 'index, follow',
-  themeColor: '#ffffff',
-}
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  robots: "index, follow",
+  themeColor: "#ffffff",
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -45,6 +47,10 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+          name="google-site-verification"
+          content="9RvH3NU-pxDwBitccJDCYleAFM29mqfFgGqQMhlkNdc"
+        />
       </head>
       <body className={inter.className}>
         <div className={styles.container}>
@@ -60,9 +66,7 @@ export default function RootLayout({ children }) {
             <div></div>
             <div></div>
           </div>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </div>
       </body>
     </html>
