@@ -110,7 +110,7 @@ const CreateGame = () => {
     };
   
     fetchGames();
-  }, [user]);
+  }, [user]);  
   
   return (
     <div className={styles.container}>
@@ -138,6 +138,7 @@ const CreateGame = () => {
                 type="button"
                 onClick={() => addField('player')}
                 className={styles.add_button}
+                disabled={loading}
               >
                 + Add Player
               </button>
@@ -151,6 +152,7 @@ const CreateGame = () => {
                     onChange={(e) => handleFieldChange(index, e.target.value, 'player')}
                     placeholder={`Player ${index + 1} name`}
                     className={styles.input_field}
+                    disabled={loading}
                     required
                   />
                   {players.length > 2 && (
@@ -158,6 +160,7 @@ const CreateGame = () => {
                       type="button"
                       onClick={() => deleteField(index, 'player')}
                       className={styles.delete_button}
+                      disabled={loading}
                     >
                       ×
                     </button>
@@ -174,6 +177,7 @@ const CreateGame = () => {
                 type="button"
                 onClick={() => addField('truth')}
                 className={styles.add_button}
+                disabled={loading}
               >
                 + Add Truth
               </button>
@@ -207,6 +211,7 @@ const CreateGame = () => {
                 type="button"
                 onClick={() => addField('dare')}
                 className={styles.add_button}
+                disabled={loading}
               >
                 + Add Dare
               </button>
@@ -238,7 +243,14 @@ const CreateGame = () => {
             className={styles.submit_button}
             disabled={loading}
           >
-            {loading ? 'Creating Game...' : 'Create Game'}
+            {loading ? (
+              <div className={styles.loader}>
+                <div className={styles.spinner}></div>
+                <span>Creating Game...</span>
+              </div>
+            ) : (
+              'Create Game'
+            )}
           </button>
         </form>
       </div>
