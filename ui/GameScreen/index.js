@@ -119,7 +119,6 @@ const GameScreen = () => {
                 {activeDrawer === 'rules' ? '✕' : 'Rules'}
             </button>
 
-            {/* Left Sidebar - Players List */}
             <div className={`${styles.sidebar} ${styles.left_sidebar} ${activeDrawer === 'players' ? styles.show : ''}`}>
                 <div className={styles.sidebar_content}>
                     <h3>Players</h3>
@@ -136,7 +135,6 @@ const GameScreen = () => {
                 </div>
             </div>
 
-            {/* Main Game Content */}
             <div className={styles.game_container}>
                 <div className={styles.title}>Spin the Bottle</div>
             <div className={styles.bottle_container}>
@@ -174,7 +172,6 @@ const GameScreen = () => {
             )}
         </div>
 
-            {/* Right Sidebar - Instructions */}
             <div className={`${styles.sidebar} ${styles.right_sidebar} ${activeDrawer === 'rules' ? styles.show : ''}`}>
                 <div className={styles.sidebar_content}>
                     <h3>How to Play</h3>
@@ -184,7 +181,7 @@ const GameScreen = () => {
                             <li>Wait for it to stop on a player</li>
                             <li>Player must choose Truth or Dare</li>
                             <li>Complete the challenge or answer truthfully</li>
-                            <li>Next player's turn!</li>
+                            <li>Next player&apos;s turn!</li>
                         </ol>
                     </div>
                 </div>

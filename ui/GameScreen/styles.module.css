@@ -218,27 +218,6 @@
     }
 }
 
-.instructions {
-    font-family: 'Courier New', monospace;
-    color: #234452;
-    line-height: 1.8;
-    font-size: 16px;
-    background: linear-gradient(to bottom, transparent 23px, #234452 1px);
-    background-size: 100% 25px;
-    padding: 0 16px;
-    position: relative;
-}
-
-.instructions::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    background: #e0d5c4;
-}
-
 @media (max-width: 768px) {
     .sidebar {
         width: 85%;
@@ -308,25 +287,6 @@
     background: #fff9f0;
     border-left: 2px solid #e0d5c4;
     padding: 30px;
-}
-
-.instructions {
-    font-family: 'Courier New', monospace;
-    color: #234452;
-    line-height: 1.8;
-    font-size: 16px;
-    background: linear-gradient(to bottom, #fff9f0 24px, #234452 1px);
-    background-size: 100% 25px;
-    padding: 0 16px;
-}
-
-.instructions ol {
-    padding-left: 24px;
-}
-
-.instructions li {
-    margin: 16px 0;
-    padding-left: 8px;
 }
 
 .game_container {
@@ -444,8 +404,8 @@
     font-family: 'Courier New', monospace;
     color: #234452;
     line-height: 1.8;
-    font-size: 16px;
-    background: linear-gradient(to bottom, #fff9f0 24px, #234452 1px);
+    font-size: 14px;
+    /* background: linear-gradient(to bottom, #fff9f0 24px, #234452 1px); */
     background-size: 100% 25px;
     padding: 0 16px;
 }
