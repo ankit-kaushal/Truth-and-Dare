@@ -1,7 +1,7 @@
-import connectToDatabase from '@/lib/mongodb';
-import Game from '@/models/Game';
-import User from '@/models/User';
-import { NextResponse } from 'next/server';
+import connectToDatabase from "@/lib/mongodb";
+import Game from "@/models/Game";
+import User from "@/models/User";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -10,8 +10,8 @@ export async function POST(request) {
 
     if (!players || !Array.isArray(players) || players.length === 0) {
       return NextResponse.json(
-        { message: 'At least one player is required' },
-        { status: 400 }
+        { message: "At least one player is required" },
+        { status: 400 },
       );
     }
 
@@ -20,24 +20,21 @@ export async function POST(request) {
       players,
       truths: truths || [],
       dares: dares || [],
-      mode: mode || 'basic'
+      mode: mode || "basic",
     });
 
     // Update user's gameIds array
     if (userId) {
       await User.findByIdAndUpdate(userId, {
-        $push: { gameIds: game._id } 
+        $push: { gameIds: game._id },
       });
     }
-    
-    return NextResponse.json(
-      { game },
-      { status: 201 }
-    );
+
+    return NextResponse.json({ game }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { message: 'Error creating game', error: error.message },
-      { status: 500 }
+      { message: "Error creating game", error: error.message },
+      { status: 500 },
     );
   }
 }
@@ -45,35 +42,32 @@ export async function POST(request) {
 export async function GET(request) {
   try {
     await connectToDatabase();
-    const userId = request.nextUrl.searchParams.get('userId');
+    const userId = request.nextUrl.searchParams.get("userId");
 
     if (!userId) {
       return NextResponse.json(
-        { message: 'User ID is required' },
-        { status: 400 }
+        { message: "User ID is required" },
+        { status: 400 },
       );
     }
 
     const user = await User.findById(userId).lean();
 
     if (!user) {
-      return NextResponse.json(
-        { message: 'User not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
     // Get games only by gameIds
     const games = await Game.find({
-      _id: { $in: user.gameIds || [] }
+      _id: { $in: user.gameIds || [] },
     }).sort({ createdAt: -1 });
-    
+
     return NextResponse.json({ games });
   } catch (error) {
-    console.error('Error in GET games:', error);
+    console.error("Error in GET games:", error);
     return NextResponse.json(
-      { message: 'Error fetching games', error: error.message },
-      { status: 500 }
+      { message: "Error fetching games", error: error.message },
+      { status: 500 },
     );
   }
 }

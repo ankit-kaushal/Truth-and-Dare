@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function SpinBottle() {
   const [players, setPlayers] = useState([]);
@@ -7,7 +7,7 @@ export default function SpinBottle() {
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const response = await axios.get('/api/players');
+      const response = await axios.get("/api/players");
       setPlayers(response.data.data);
     };
     fetchPlayers();

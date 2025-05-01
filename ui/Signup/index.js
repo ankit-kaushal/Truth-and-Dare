@@ -1,47 +1,47 @@
-'use client';
-import { useState } from 'react';
-import Link from 'next/link';
-import { useAuth } from '@/context/AuthContext';
-import axios from 'axios';
-import styles from './styles.module.css';
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import axios from "axios";
+import styles from "./styles.module.css";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     const formattedData = {
       name: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
-      password: formData.password
-    }
+      password: formData.password,
+    };
 
     try {
-      const { data } = await axios.post('/api/auth/signup', formattedData);
-      
+      const { data } = await axios.post("/api/auth/signup", formattedData);
+
       await login(data.user);
-      window.location.href = '/game';
+      window.location.href = "/game";
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create account');
+      setError(err.response?.data?.message || "Failed to create account");
     } finally {
       setLoading(false);
     }
@@ -103,9 +103,9 @@ const Signup = () => {
               required
             />
             <div className={styles.submit_button_wrapper}>
-              <button 
-                type="submit" 
-                className={styles.submit_button} 
+              <button
+                type="submit"
+                className={styles.submit_button}
                 disabled={loading}
               >
                 {loading ? (
@@ -114,7 +114,7 @@ const Signup = () => {
                     <span>Creating Account...</span>
                   </div>
                 ) : (
-                  'Sign Up'
+                  "Sign Up"
                 )}
               </button>
             </div>

@@ -1,32 +1,32 @@
 .container {
+  background: transparent;
   display: flex;
   min-height: 100vh;
   padding: 2rem;
-  background: transparent;
 }
 
 .wrapper {
-  display: flex;
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
   background: white;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
+  display: flex;
+  margin: auto;
+  max-width: 1200px;
   overflow: hidden;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .responsive_wrapper {
     flex-direction: column-reverse;
-    width: 95%;
     margin: 20px auto;
+    width: 95%;
   }
 
-  .welcome_panel, 
+  .welcome_panel,
   .form_panel {
-    width: 100%;
     padding: 20px;
+    width: 100%;
   }
 
   .form {
@@ -34,8 +34,8 @@
   }
 
   .input {
-    width: 100%;
     margin-bottom: 15px;
+    width: 100%;
   }
 
   .submit_button {
@@ -52,14 +52,14 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .responsive_wrapper {
-    width: 100%;
-    margin: 0;
     border-radius: 20px;
+    margin: 0;
+    width: 100%;
   }
 
-  .welcome_panel, 
+  .welcome_panel,
   .form_panel {
     padding: 15px;
   }
@@ -69,71 +69,71 @@
   }
 
   .input {
-    padding: 10px;
     font-size: 14px;
+    padding: 10px;
   }
 }
 
 .form_panel {
-  flex: 1;
-  padding: 4rem;
   background: white;
   color: #333;
+  flex: 1;
+  padding: 4rem;
 }
 
 .welcome_panel {
-  flex: 1;
-  padding: 4rem;
+  align-items: center;
   background: #234452;
   color: white;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  padding: 4rem;
   text-align: center;
 }
 
 .title {
-  font-size: 2rem;
   color: #333;
+  font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
 }
 
 .welcome_title {
+  color: white;
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: white;
 }
 
 .welcome_text {
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
   color: white;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 400px;
   margin: 0 auto;
+  max-width: 400px;
 }
 
 .input {
-  padding: 1rem;
+  background: transparent;
   border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 1rem;
   color: #333;
-  transition: border-color 0.3s;
-  background: transparent;
+  font-size: 1rem;
   height: 48px;
+  padding: 1rem;
+  transition: border-color 0.3s;
 }
 
 .input:focus {
-  outline: none;
   border-color: #234452;
+  outline: none;
 }
 
 .input::placeholder {
@@ -141,17 +141,17 @@
 }
 
 .form_options {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   color: #666;
+  display: flex;
+  justify-content: space-between;
 }
 
 .remember_me {
-  display: flex;
   align-items: center;
-  gap: 0.5rem;
   cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
 
   .input {
     accent-color: #234452;
@@ -169,37 +169,37 @@
 }
 
 .submit_button_wrapper {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .submit_button {
-  padding: 0.8rem 2.5rem;
   background: #234452;
-  color: white;
   border: none;
   border-radius: 25px;
-  font-size: 1rem;
+  color: white;
   cursor: pointer;
-  transition: background 0.3s;
+  font-size: 1rem;
   margin-top: 1rem;
+  padding: 0.8rem 2.5rem;
+  transition: background 0.3s;
 }
 
 .submit_button:hover {
   background: white;
-  color: #234452;
   border: 2px solid #234452;
+  color: #234452;
 }
 
 .switch_button {
-  padding: 0.8rem 2.5rem;
+  background: transparent;
   border: 2px solid white;
   border-radius: 25px;
-  background: transparent;
   color: white;
-  font-size: 1rem;
   cursor: pointer;
+  font-size: 1rem;
+  padding: 0.8rem 2.5rem;
   transition: all 0.3s;
 }
 
@@ -208,40 +208,44 @@
   color: #234452;
 }
 
-
 .error {
+  background-color: #fef2f2;
+  border-radius: 4px;
   color: #dc2626;
-  text-align: center;
   margin-bottom: 1rem;
   padding: 0.5rem;
-  border-radius: 4px;
-  background-color: #fef2f2;
+  text-align: center;
 }
 
 .loader {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   gap: 8px;
+  justify-content: center;
 }
 
 .spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #ffffff;
-  border-top: 2px solid transparent;
-  border-radius: 50%;
   animation: spin 1s linear infinite;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-top: 2px solid transparent;
+  height: 16px;
+  width: 16px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .submit_button:disabled {
-  opacity: 0.7;
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .input:disabled {

@@ -1,7 +1,7 @@
-'use client';
-import { useState, useEffect, useRef } from 'react';
-import { useAuth } from '@/context/AuthContext';
-import styles from './styles.module.css';
+"use client";
+import { useState, useEffect, useRef } from "react";
+import { useAuth } from "@/context/AuthContext";
+import styles from "./styles.module.css";
 
 const ProfileButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,21 +15,28 @@ const ProfileButton = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const getInitials = (name) => {
     return name
-      .split(' ')
+      .split(" ")
       .slice(0, 2)
-      .map(word => word[0])
-      .join('')
+      .map((word) => word[0])
+      .join("")
       .toUpperCase();
   };
 
   const getColorFromString = (str) => {
-    const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEEAD', '#D4A5A5'];
+    const colors = [
+      "#FF6B6B",
+      "#4ECDC4",
+      "#45B7D1",
+      "#96CEB4",
+      "#FFEEAD",
+      "#D4A5A5",
+    ];
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -39,26 +46,28 @@ const ProfileButton = () => {
 
   return (
     <div className={styles.container} ref={dropdownRef}>
-      <button 
+      <button
         className={styles.profile_button}
         onClick={() => setIsOpen(!isOpen)}
-        style={{ backgroundColor: getColorFromString(user?.email || 'default') }}
+        style={{
+          backgroundColor: getColorFromString(user?.email || "default"),
+        }}
       >
-        {getInitials(user?.name || 'User Name')}
+        {getInitials(user?.name || "User Name")}
       </button>
-      
+
       {isOpen && (
         <div className={styles.dropdown}>
           <button onClick={logout} className={styles.logout_button}>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
               strokeLinejoin="round"
               className={styles.logout_icon}
             >

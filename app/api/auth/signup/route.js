@@ -1,7 +1,7 @@
-import connectToDatabase from '@/lib/mongodb';
-import User from '@/models/User';
-import bcrypt from 'bcryptjs';
-import { NextResponse } from 'next/server';
+import connectToDatabase from "@/lib/mongodb";
+import User from "@/models/User";
+import bcrypt from "bcryptjs";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -13,8 +13,8 @@ export async function POST(request) {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
-        { message: 'User already exists' },
-        { status: 400 }
+        { message: "User already exists" },
+        { status: 400 },
       );
     }
 
@@ -36,14 +36,11 @@ export async function POST(request) {
       role: user.role,
     };
 
-    return NextResponse.json(
-      { user: userWithoutPassword },
-      { status: 201 }
-    );
+    return NextResponse.json({ user: userWithoutPassword }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { message: 'Error creating user', error: error.message },
-      { status: 500 }
+      { message: "Error creating user", error: error.message },
+      { status: 500 },
     );
   }
 }

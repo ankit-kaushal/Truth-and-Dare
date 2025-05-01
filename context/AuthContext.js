@@ -1,5 +1,5 @@
-'use client';
-import { createContext, useContext, useState, useEffect } from 'react';
+"use client";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -7,57 +7,59 @@ export function AuthProvider({ children }) {
   const [authState, setAuthState] = useState({
     user: null,
     loading: true,
-    error: null
+    error: null,
   });
 
   useEffect(() => {
     try {
-      const storedUser = localStorage.getItem('user');
+      const storedUser = localStorage.getItem("user");
       if (storedUser) {
-        setAuthState(prev => ({
+        setAuthState((prev) => ({
           ...prev,
           user: JSON.parse(storedUser),
-          loading: false
+          loading: false,
         }));
       } else {
-        setAuthState(prev => ({ ...prev, loading: false }));
+        setAuthState((prev) => ({ ...prev, loading: false }));
       }
     } catch (error) {
-      setAuthState(prev => ({
+      console.error("Error restoring session:", error.message);
+      setAuthState((prev) => ({
         ...prev,
-        error: 'Failed to restore session',
-        loading: false
+        error: "Failed to restore session",
+        loading: false,
       }));
     }
   }, []);
 
   const login = async (userData) => {
-    setAuthState(prev => ({ ...prev, loading: true, error: null }));
+    setAuthState((prev) => ({ ...prev, loading: true, error: null }));
     try {
-      localStorage.setItem('user', JSON.stringify(userData));
-      setAuthState(prev => ({
+      localStorage.setItem("user", JSON.stringify(userData));
+      setAuthState((prev) => ({
         ...prev,
         user: userData,
-        loading: false
+        loading: false,
       }));
-      window.location.href = '/game';
+      window.location.href = "/game";
     } catch (error) {
-      setAuthState(prev => ({
+      console.error("Login failed:", error.message);
+      setAuthState((prev) => ({
         ...prev,
-        error: 'Login failed',
-        loading: false
+        error: "Login failed",
+        loading: false,
       }));
     }
   };
 
   const logout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     setAuthState({
       user: null,
       loading: false,
-      error: null
+      error: null,
     });
-    window.location.href = '/login';
+    window.location.href = "/login";
   };
 
   return (
@@ -70,7 +72,7 @@ export function AuthProvider({ children }) {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };

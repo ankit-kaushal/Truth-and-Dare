@@ -1,7 +1,7 @@
 "use client";
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '@/context/AuthContext';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Admin() {
   const router = useRouter();
@@ -9,9 +9,9 @@ export default function Admin() {
 
   useEffect(() => {
     if (user) {
-      router.push('/admin/users');
+      router.push("/admin/users");
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   }, [user, router]);
 

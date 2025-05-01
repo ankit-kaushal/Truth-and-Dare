@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const PlayerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please add a name'],
+    required: [true, "Please add a name"],
   },
 });
 
-export default mongoose.models.Player || mongoose.model('Player', PlayerSchema);
+export default mongoose.models.Player || mongoose.model("Player", PlayerSchema);

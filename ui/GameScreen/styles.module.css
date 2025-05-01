@@ -86,9 +86,11 @@
 }
 
 .game_container {
+  flex: 1;
   margin: 0 auto;
   max-width: 1200px;
   padding: 2rem;
+  padding: 20px;
   text-align: center;
 }
 
@@ -218,14 +220,14 @@
   background: #234452;
   border: none;
   border-radius: 8px;
-  bottom: 20px;
   box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
   color: white;
   cursor: pointer;
   display: none;
-  font-size: 16px;
-  padding: 12px 24px;
+  font-size: 14px;
+  padding: 10px 15px;
   position: fixed;
+  transition: all 0.3s ease;
   z-index: 1000;
 }
 
@@ -326,32 +328,6 @@
   color: white;
 }
 
-.right_sidebar {
-  background: #fff9f0;
-  border-left: 2px solid #e0d5c4;
-  padding: 30px;
-}
-
-.game_container {
-  flex: 1;
-  padding: 20px;
-}
-
-.sidebar_toggle {
-  background: #234452;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
-  color: white;
-  cursor: pointer;
-  display: none;
-  font-size: 14px;
-  padding: 10px 15px;
-  position: fixed;
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
 .left_toggle {
   bottom: 20px;
   left: 20px;
@@ -401,46 +377,6 @@
   .right_sidebar.show {
     right: 0;
   }
-}
-
-.sidebar_content {
-  height: 100%;
-  overflow-y: auto;
-}
-
-.sidebar_content h3 {
-  border-bottom: 2px solid #234452;
-  color: #234452;
-  font-size: 24px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-}
-
-.players_list {
-  list-style: none;
-  margin: 20px 0;
-  padding: 0;
-}
-
-.player_item {
-  background: #f5f5f5;
-  border-radius: 8px;
-  color: #234452;
-  font-size: 16px;
-  margin: 8px 0;
-  padding: 12px 16px;
-  transition: all 0.3s ease;
-}
-
-.player_item.active {
-  background: #234452;
-  color: white;
-}
-
-.right_sidebar {
-  background: #fff9f0;
-  border-left: 2px solid #e0d5c4;
-  padding: 30px;
 }
 
 .instructions {

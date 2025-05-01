@@ -3,10 +3,9 @@
   "trailingComma": "all",
   "singleQuote": false,
   "tabWidth": 2,
-  "useTabs": false,
-  "printWidth": 80,
   "bracketSpacing": true,
+  "jsxBracketSameLine": false,
   "arrowParens": "always",
-  "singleAttributePerLine": true,
-  "arrayElementNewline": "consistent"
+  "printWidth": 80,
+  "singleAttributePerLine": false
 }
