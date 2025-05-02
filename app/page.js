@@ -58,7 +58,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {!user.name && (
+                {!user && (
                   <svg className={styles.google_icon} viewBox="0 0 24 24">
                     <path
                       fill="#4285F4"
@@ -82,7 +82,7 @@ export default function Home() {
                   {user ? `Continue as ${user.name}` : "Sign in with Google"}
                 </span>
               </motion.button>
-              {!user.name && (
+              {!user && (
                 <motion.button
                   onClick={() => router.push("/login")}
                   className={styles.google_button}
