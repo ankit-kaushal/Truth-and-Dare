@@ -1,78 +1,70 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const AuthContext = createContext();
+const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
-  const [authState, setAuthState] = useState({
-    user: null,
-    loading: true,
-    error: null,
-  });
+  const [user, setUser] = useState(null);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setAuthState((prev) => ({
-          ...prev,
-          user: JSON.parse(storedUser),
-          loading: false,
-        }));
-      } else {
-        setAuthState((prev) => ({ ...prev, loading: false }));
-      }
-    } catch (error) {
-      console.error("Error restoring session:", error.message);
-      setAuthState((prev) => ({
-        ...prev,
-        error: "Failed to restore session",
-        loading: false,
-      }));
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      return;
     }
-  }, []);
 
-  const login = async (userData) => {
-    setAuthState((prev) => ({ ...prev, loading: true, error: null }));
-    try {
+    if (session?.user) {
+      const userData = {
+        _id: session.user.id,
+        name: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
+        role: session.user.role,
+      };
+      setUser(userData);
       localStorage.setItem("user", JSON.stringify(userData));
-      setAuthState((prev) => ({
-        ...prev,
-        user: userData,
-        loading: false,
-      }));
-      window.location.href = "/game";
+    }
+  }, [session]);
+
+  const login = async (userData = null) => {
+    try {
+      if (userData) {
+        setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData));
+        router.push("/game");
+        return;
+      }
+      await signIn("password", { callbackUrl: "/game" });
     } catch (error) {
-      console.error("Login failed:", error.message);
-      setAuthState((prev) => ({
-        ...prev,
-        error: "Login failed",
-        loading: false,
-      }));
+      console.error("Login error:", error);
+      throw error;
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("user");
-    setAuthState({
-      user: null,
-      loading: false,
-      error: null,
-    });
-    window.location.href = "/login";
+  const logout = async () => {
+    try {
+      localStorage.removeItem("user");
+      await signOut({ callbackUrl: "/" });
+      setUser(null);
+    } catch (error) {
+      console.error("Logout error:", error);
+      throw error;
+    }
   };
 
-  return (
-    <AuthContext.Provider value={{ ...authState, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = {
+    user,
+    loading: status === "loading",
+    isAuthenticated: !!user,
+    login,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export const useAuth = () => useContext(AuthContext);

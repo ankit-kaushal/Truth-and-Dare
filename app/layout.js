@@ -1,10 +1,9 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import styles from "./layout.module.css";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
-
-import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata = {
   title: "Truth and Dare - Fun Party Game",
@@ -66,7 +65,7 @@ export default function RootLayout({ children }) {
             <div></div>
             <div></div>
           </div>
-          <AuthProvider>{children}</AuthProvider>
+          <Providers>{children}</Providers>
         </div>
       </body>
     </html>
