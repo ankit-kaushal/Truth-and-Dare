@@ -5,10 +5,13 @@ import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const { user } = useAuth();
+  const [showSampleBox, setShowSampleBox] = useState(false);
+  console.log("showSampleBox", showSampleBox);
 
   const handleStart = async () => {
     if (user) {
@@ -96,7 +99,11 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <div className={styles.bottle_section}>
+        <div
+          className={styles.bottle_section}
+          onMouseEnter={() => setShowSampleBox(true)}
+          onMouseLeave={() => setShowSampleBox(false)}
+        >
           <motion.div
             className={styles.bottle_container}
             whileHover={{ rotate: 360 }}
@@ -111,8 +118,40 @@ export default function Home() {
               priority
             />
           </motion.div>
+
+          {false && (
+            <motion.div
+              className={styles.sample_box}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+            >
+              <h3>Try a Sample Game!</h3>
+              <p>Experience the game with demo players</p>
+              <motion.button
+                className={styles.sample_button}
+                onClick={() => router.push("/game/sample")}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Play Demo
+              </motion.button>
+            </motion.div>
+          )}
         </div>
       </main>
+
+      <motion.button
+        className={styles.floating_demo_button}
+        onClick={() => router.push("/game/sample")}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        Play Demo
+      </motion.button>
     </div>
   );
 }
