@@ -11,9 +11,9 @@ export default function Admin() {
     if (!loading && user) {
       router.push("/admin/users");
     } else {
-      router.push("/login");
+      router.push("/");
     }
-  }, [user, router]);
+  }, [user, router, loading]);
 
   return null;
 }
