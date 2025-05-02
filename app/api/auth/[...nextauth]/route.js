@@ -13,14 +13,10 @@ const handler = NextAuth({
   callbacks: {
     async signIn({ user, account }) {
       try {
-        console.log("Starting signIn callback");
         await connectToDatabase();
-        console.log("ConnectToDatabase SUCCESS");
         const existingUser = await User.findOne({ email: user.email });
-        console.log("Existing user check:", existingUser);
 
         if (!existingUser) {
-          console.log("Creating new user for:", user.email);
           const userData = {
             name: user.name,
             email: user.email,
@@ -29,14 +25,17 @@ const handler = NextAuth({
             role: "player",
             authMethods: ["google"],
           };
-          console.log("User data to create:", userData);
-
           const newUser = await User.create(userData);
-          console.log("New user created:", newUser);
-
           user.id = newUser._id.toString();
           user.role = newUser.role;
         } else {
+          if (account.provider === "google" && user.image) {
+            await User.findByIdAndUpdate(existingUser._id, {
+              $set: { image: user.image },
+              $addToSet: { authMethods: "google" },
+              googleId: account.providerAccountId,
+            });
+          }
           user.id = existingUser._id.toString();
           user.role = existingUser.role;
         }
