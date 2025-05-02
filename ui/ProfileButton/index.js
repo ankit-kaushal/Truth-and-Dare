@@ -75,6 +75,11 @@ const ProfileButton = () => {
 
       {isOpen && (
         <div className={styles.dropdown}>
+          <div className={styles.user_info}>
+            <h3 className={styles.user_name}>{user?.name}</h3>
+            <p className={styles.user_email}>{user?.email}</p>
+          </div>
+          <div className={styles.divider}></div>
           {user?.role === "admin" && (
             <button
               onClick={() => (window.location.href = "/admin")}

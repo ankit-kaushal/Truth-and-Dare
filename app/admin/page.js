@@ -5,10 +5,10 @@ import { useAuth } from "@/context/AuthContext";
 
 export default function Admin() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   useEffect(() => {
-    if (user) {
+    if (!loading && user) {
       router.push("/admin/users");
     } else {
       router.push("/login");

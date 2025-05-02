@@ -64,3 +64,26 @@
   object-fit: cover;
   width: 100%;
 }
+
+.user_info {
+  padding: 12px 16px;
+}
+
+.user_name {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.user_email {
+  color: #666;
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+.divider {
+  background-color: #eee;
+  height: 1px;
+  margin: 8px 0;
+}
