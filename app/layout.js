@@ -6,14 +6,14 @@ import Providers from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Truth and Dare - Fun Party Game",
+  title: "Truth or Dare - Fun Party Game",
   description:
-    "Play the ultimate Truth and Dare game with friends! Create custom games, add your own truth questions and dare challenges. Perfect for parties and gatherings.",
+    "Play the ultimate Truth or Dare game with friends! Create custom games, add your own truth questions and dare challenges. Perfect for parties and gatherings.",
   keywords:
     "truth or dare, party games, social games, fun games, custom game modes",
   openGraph: {
-    title: "Truth and Dare - Fun Party Game",
-    description: "Create and play custom Truth and Dare games with friends",
+    title: "Truth or Dare - Fun Party Game",
+    description: "Create and play custom Truth or Dare games with friends",
     type: "website",
     url: "https://spin.ankitkaushal.in/",
     images: [
@@ -21,14 +21,14 @@ export const metadata = {
         url: "https://spin.ankitkaushal.in/image.png",
         width: 1200,
         height: 630,
-        alt: "Truth and Dare Game",
+        alt: "Truth or Dare Game",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Truth and Dare - Fun Party Game",
-    description: "Create and play custom Truth and Dare games with friends",
+    title: "Truth or Dare - Fun Party Game",
+    description: "Create and play custom Truth or Dare games with friends",
     images: ["https://spin.ankitkaushal.in/image.png"],
   },
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="canonical" href="https://spin.ankitkaushal.in/" />
-        <meta name="application-name" content="Truth and Dare" />
+        <meta name="application-name" content="Truth or Dare" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
