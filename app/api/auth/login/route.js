@@ -11,7 +11,6 @@ export async function POST(request) {
 
     const { email, password } = await request.json();
 
-    // Find user
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json(
@@ -20,7 +19,6 @@ export async function POST(request) {
       );
     }
 
-    // Check password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return NextResponse.json(
@@ -29,23 +27,21 @@ export async function POST(request) {
       );
     }
 
-    // Generate JWT token
     const token = jwt.sign(
       { userId: user._id, email: user.email, role: user.role },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN },
     );
 
-    // Update user with token
     user.token = token;
     await user.save();
 
-    // Remove password from response
     const userWithoutPassword = {
       _id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
+      image: user.image,
       token,
     };
 

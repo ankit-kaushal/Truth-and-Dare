@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
 import styles from "./styles.module.css";
+import Image from "next/image";
 
 const ProfileButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,15 +47,31 @@ const ProfileButton = () => {
 
   return (
     <div className={styles.container} ref={dropdownRef}>
-      <button
-        className={styles.profile_button}
-        onClick={() => setIsOpen(!isOpen)}
-        style={{
-          backgroundColor: getColorFromString(user?.email || "default"),
-        }}
-      >
-        {getInitials(user?.name || "User Name")}
-      </button>
+      {user?.image ? (
+        <button
+          className={styles.profile_button}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <Image
+            src={user.image}
+            alt={user.name}
+            fill
+            sizes="40px"
+            className={styles.profile_image}
+            priority
+          />
+        </button>
+      ) : (
+        <button
+          className={styles.profile_button}
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            backgroundColor: getColorFromString(user?.email || "default"),
+          }}
+        >
+          {getInitials(user?.name || "User Name")}
+        </button>
+      )}
 
       {isOpen && (
         <div className={styles.dropdown}>

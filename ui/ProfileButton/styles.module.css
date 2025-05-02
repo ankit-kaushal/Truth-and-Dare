@@ -57,3 +57,10 @@
 .logout_button:hover {
   background: #f1f5f9;
 }
+
+.profile_image {
+  border-radius: 50%;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
