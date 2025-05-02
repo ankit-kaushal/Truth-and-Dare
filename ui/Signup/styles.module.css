@@ -252,3 +252,40 @@
   background-color: #f3f4f6;
   cursor: not-allowed;
 }
+
+.email_verification {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.otp_button,
+.verify_button {
+  background-color: #4caf50;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.otp_button:disabled,
+.verify_button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.otp_section {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.verified_badge {
+  color: #4caf50;
+  font-size: 14px;
+  margin-top: 5px;
+}

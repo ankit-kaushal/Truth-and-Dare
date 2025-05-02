@@ -17,13 +17,15 @@ const UserSchema = new mongoose.Schema(
         default: ["password"],
       },
     ],
+    tempOTP: { type: String },
+    otpExpiry: { type: Date },
+    isEmailVerified: { type: Boolean, default: false },
   },
   {
     timestamps: true,
   },
 );
 
-// Method to link or update authentication methods
 UserSchema.methods.linkAuthMethod = async function (method, data) {
   if (!this.authMethods.includes(method)) {
     this.authMethods.push(method);
