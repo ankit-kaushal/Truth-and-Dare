@@ -34,6 +34,17 @@ export default function Home() {
           className={styles.logo_image}
         />
       </div>
+      <motion.button
+        className={styles.floating_demo_button}
+        onClick={() => router.push("/game/sample")}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        Play Demo
+      </motion.button>
       <div className={styles.clouds}>
         <div className={`${styles.cloud} ${styles.cloud1}`} />
         <div className={`${styles.cloud} ${styles.cloud2}`} />
@@ -140,18 +151,6 @@ export default function Home() {
           )}
         </div>
       </main>
-
-      <motion.button
-        className={styles.floating_demo_button}
-        onClick={() => router.push("/game/sample")}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.5 }}
-      >
-        Play Demo
-      </motion.button>
     </div>
   );
 }
