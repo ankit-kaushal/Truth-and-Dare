@@ -6,7 +6,7 @@ const SampleGameScreen = () => {
   const [gameState, setGameState] = useState({
     game: {
       players: ["Player 1", "Player 2", "Player 3", "Player 4"],
-      mode: "normal",
+      mode: "basic",
       truths: [],
       dares: [],
     },
