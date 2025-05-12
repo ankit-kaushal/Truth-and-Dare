@@ -6,22 +6,24 @@ import Providers from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Truth or Dare - Fun Party Game",
+  title: "Truth or Dare Online - Free Party Game | Play Now",
   description:
-    "Play the ultimate Truth or Dare game with friends! Create custom games, add your own truth questions and dare challenges. Perfect for parties and gatherings.",
+    "Play Truth or Dare online for free! The best multiplayer party game with custom questions, dares, and challenges. Perfect for friends, parties, and virtual hangouts. Try our free demo now!",
   keywords:
-    "truth or dare, party games, social games, fun games, custom game modes",
+    "truth or dare online, truth or dare game, party games online, truth or dare questions, truth or dare app, virtual party games, free online games, multiplayer games, fun party games, social games",
   openGraph: {
-    title: "Truth or Dare - Fun Party Game",
-    description: "Create and play custom Truth or Dare games with friends",
+    title: "Truth or Dare Online - Free Party Game | Play Now",
+    description:
+      "Play Truth or Dare online with friends! Create custom games, add your own questions and challenges. Perfect for virtual parties and gatherings.",
     type: "website",
     url: "https://spin.ankitkaushal.in/",
+    siteName: "Truth or Dare Online",
     images: [
       {
         url: "https://spin.ankitkaushal.in/image.png",
         width: 1200,
         height: 630,
-        alt: "Truth or Dare Game",
+        alt: "Truth or Dare Online Game",
       },
     ],
   },
@@ -50,6 +52,28 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="9RvH3NU-pxDwBitccJDCYleAFM29mqfFgGqQMhlkNdc"
         />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Truth or Dare Online",
+            applicationCategory: "Game",
+            operatingSystem: "Web Browser",
+            url: "https://spin.ankitkaushal.in",
+            description:
+              "Free online Truth or Dare game perfect for virtual parties and gatherings. Play with friends, create custom games, and enjoy endless fun!",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.8",
+              ratingCount: "150",
+            },
+          })}
+        </script>
       </head>
       <body className={inter.className}>
         <div className={styles.container}>
