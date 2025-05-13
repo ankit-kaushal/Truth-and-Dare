@@ -52,28 +52,30 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="9RvH3NU-pxDwBitccJDCYleAFM29mqfFgGqQMhlkNdc"
         />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: "Truth or Dare Online",
-            applicationCategory: "Game",
-            operatingSystem: "Web Browser",
-            url: "https://spin.ankitkaushal.in",
-            description:
-              "Free online Truth or Dare game perfect for virtual parties and gatherings. Play with friends, create custom games, and enjoy endless fun!",
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "USD",
-            },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.8",
-              ratingCount: "150",
-            },
-          })}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `{
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Truth or Dare Online",
+              "applicationCategory": "Game",
+              "operatingSystem": "Web Browser",
+              "url": "https://spin.ankitkaushal.in",
+              "description": "Free online Truth or Dare game perfect for virtual parties and gatherings. Play with friends, create custom games, and enjoy endless fun!",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "150"
+              }
+            }`,
+          }}
+        />
       </head>
       <body className={inter.className}>
         <div className={styles.container}>
